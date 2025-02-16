@@ -1,10 +1,10 @@
 <p align="center"><img src="https://i.ibb.co/3F6V9JQ/MHDDoS.png" width="400px" height="150px" alt="ddos"></p>
 
-<h1 align="center">KrizzZModz 🇵🇪 OFC - BOT Attack Script With 56 Methods</h1>
+<h1 align="center">DemzXD join grub https://t.me/testddos00 OFC - BOT Attack Script With 56 Methods</h1>
 <em><h5 align="center">(Programming Language - Python 3)</h5></em>
 
 <p align="center">
-<a href="#"><img alt="https://youtube.com/@krizzzmodzofc3" src="[https://img.shields.io/github/forks/KzTeam/MHDDoS?style=for-the-badge](https://youtube.com/@krizzzmodzofc3)"></a>
+<a href="#"><img alt="https://youtube.com/@dimaspratama010?si=aN_nm9RhJW5dRc_d" src="[https://img.shields.io/github/forks/KzTeam/MHDDoS?style=for-the-badge](https://t.me/testddos00/@Dimaspratama11)"></a>
 <a href="#"><img alt="MH-DDoS last commit (main)" src="https://img.shields.io/github/last-commit/MatrixTM/MHDDoS/main?color=green&style=for-the-badge"></a>
 <a href="#"><img alt="MH-DDoS Repo stars" src="https://img.shields.io/github/stars/MatrixTM/MHDDoS?style=for-the-badge&color=yellow"></a>
 <a href="#"><img alt="MH-DDoS License" src="https://img.shields.io/github/license/MatrixTM/MHDDoS?color=orange&style=for-the-badge"></a>
