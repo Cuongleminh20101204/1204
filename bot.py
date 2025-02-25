@@ -53,7 +53,7 @@ def handle_start(message):
                 f"📅 Ngày Hết Hạng: {expiration_date.strftime('%d/%m/%Y %H:%M:%S')}"
             )
     else:
-        vip_status = "❌ *No tienes un plan vip activo.*"
+        vip_status = "❌ *No.*"
     markup = InlineKeyboardMarkup()
     button = InlineKeyboardButton(
         text="💻 Cường 💻",
