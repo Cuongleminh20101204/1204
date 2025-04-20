@@ -7,7 +7,7 @@ import time
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 BOT_TOKEN = "7933828288:AAFX_Ab0wAdOUMnTqIaL2CX1bJX2PpQAqFQ"
-ADMIN_ID = 1
+ADMIN_ID = 6454123620
 START_PY_PATH = "/workspaces/MHDDoS/start.py"
 
 bot = telebot.TeleBot(BOT_TOKEN)
